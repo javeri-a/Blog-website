@@ -1,5 +1,6 @@
 
 
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -15,7 +16,6 @@ export default function BlogPage() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [userId] = useState('user123'); 
 
-  
   useEffect(() => {
     const savedComments = localStorage.getItem('comments');
     if (savedComments) {
@@ -23,7 +23,6 @@ export default function BlogPage() {
     }
   }, []);
 
- 
   useEffect(() => {
     localStorage.setItem('comments', JSON.stringify(comments));
   }, [comments]);
@@ -44,13 +43,10 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="blog-page px-60 py-10">
-     
-
-     
+    <div className="blog-page px-4 sm:px-6 lg:px-60 py-10">
       <CommentForm onSubmit={handleAddComment} userId={userId} />
 
-      <div className="comments-section space-y-6 ">
+      <div className="comments-section space-y-6 mt-6">
         {comments.map((comment) => (
           <div key={comment.id} className="comment p-4 border rounded-lg shadow-lg">
             <div className="comment-header flex justify-between items-center mb-2">
@@ -70,7 +66,6 @@ export default function BlogPage() {
     </div>
   );
 }
-
 
 const CommentForm = ({
   onSubmit,
@@ -92,7 +87,7 @@ const CommentForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6 space-y-4">
+    <form onSubmit={handleSubmit} className="mb-6 space-y-4 max-w-2xl mx-auto">
       <div>
         <label
           htmlFor="name"
